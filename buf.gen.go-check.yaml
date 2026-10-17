@@ -1,0 +1,14 @@
+# Used only by `make go-check` to prove the contract compiles for Go consumers.
+version: v2
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: example.com/contracts-check/gen
+plugins:
+  - local: ["go", "run", "google.golang.org/protobuf/cmd/protoc-gen-go@v1.36.12"]
+    out: gen
+    opt: paths=source_relative
+  - local: ["go", "run", "google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.6.2"]
+    out: gen
+    opt: paths=source_relative
