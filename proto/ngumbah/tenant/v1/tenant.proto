@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package ngumbah.tenant.v1;
+
+// Manages laundry businesses (tenants) that use Ngumbah.
+service TenantService {
+  // Returns one tenant by ID.
+  // Errors: INVALID_ARGUMENT if tenant_id is not a UUID, NOT_FOUND if no tenant has that ID.
+  rpc GetTenant(GetTenantRequest) returns (GetTenantResponse);
+}
+
+// Request for TenantService.GetTenant.
+message GetTenantRequest {
+  // Tenant ID as a UUID string.
+  string tenant_id = 1;
+}
+
+// Response for TenantService.GetTenant.
+message GetTenantResponse {
+  // The requested tenant.
+  Tenant tenant = 1;
+}
+
+// A laundry business using Ngumbah.
+message Tenant {
+  // Tenant ID as a UUID string.
+  string id = 1;
+  // Business name shown to staff and on receipts.
+  string name = 2;
+  // Subscription plan of the tenant.
+  Plan plan = 3;
+}
+
+// Subscription plan; there is no billing yet, only the plan marker.
+enum Plan {
+  // Unset; never a valid stored value.
+  PLAN_UNSPECIFIED = 0;
+  // Free plan.
+  PLAN_FREE = 1;
+  // Paid plan.
+  PLAN_PRO = 2;
+}
