@@ -4,8 +4,7 @@ package ngumbah.tenant.v1;
 
 // Manages laundry businesses (tenants) that use Ngumbah.
 service TenantService {
-  // Returns one tenant by ID.
-  // Errors: INVALID_ARGUMENT if tenant_id is not a UUID, NOT_FOUND if no tenant has that ID.
+  // Returns one tenant; INVALID_ARGUMENT for a non-UUID ID, NOT_FOUND if it does not exist.
   rpc GetTenant(GetTenantRequest) returns (GetTenantResponse);
 }
 

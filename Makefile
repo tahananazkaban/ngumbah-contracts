@@ -9,13 +9,13 @@ help: ## List available commands
 		awk 'BEGIN {FS = ":.*## "}; {printf "  %-14s %s\n", $$1, $$2}'
 
 lint: ## Lint protos with the STANDARD rule set
-	@buf lint
+	@buf lint && echo "lint: ok"
 
 format: ## Rewrite protos in canonical format
 	@buf format --write
 
 format-check: ## Fail if any proto is not formatted
-	@buf format --diff --exit-code
+	@buf format --diff --exit-code && echo "format-check: ok"
 
 breaking: ## Check for breaking changes against the latest release tag
 	@sh scripts/breaking.sh

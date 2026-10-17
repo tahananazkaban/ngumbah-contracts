@@ -25,7 +25,7 @@ make check   # format-check, lint, breaking, go-check (same as CI)
 | `make breaking` | No breaking change against the latest `v*` tag (`FILE` rules); skipped before the first release |
 | `make go-check` | Generated Go code compiles |
 
-Requires Buf 1.74.0 and Go 1.27 (see `make doctor` in `ngumbah-platform`).
+Uses Buf 1.74.0 and Go 1.27.2, the versions pinned in CI.
 
 ## Versioning
 
